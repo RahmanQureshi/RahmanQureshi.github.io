@@ -4,15 +4,14 @@ title: About
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
+<img id="about-pic" src="/assets/about_picture.jpg">
 
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
+**Please call me Ray!**
 
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
+I tend to be a more outgoing person. I love travelling, hiking, camping and meeting new people, and I am into fitness and amateur boxing.
 
+At the same time, I spend a lot of time reading books and I nearly always have a kindle with me.
 
-[jekyll-organization]: https://github.com/jekyll
+I speak English and Urdu and I spent a year in Japan so 少し日本語も話せます.
+
+Don't be afraid to get in touch! My email is <a href="mailto:rahman.a.qureshi@gmail.com">rahman.a.qureshi@gmail.com</a>.

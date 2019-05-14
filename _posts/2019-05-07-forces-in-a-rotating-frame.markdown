@@ -17,7 +17,7 @@ This post derives newton's law in a rotating frame of reference using the more g
 
 This section explains the geometric picture. Define two frames, frame 0 and frame 1, and say frame 0 is an inertial frame and frame 1 is rotating about some vector $$\omega$$. Next, we define a point p. An observer in frame 1 is watching point p: $$r_1^{p1}(t)$$. He wants to apply newton's law to understand it's motion. He knows that the frame he is in is not inertial, so he cannot just apply $$F=ma$$.
 
-| <img src="/assets/point_in_rotating_frame.svg" alt="Image is unavailable. Sorry." style="margin-left: auto; margin-right: auto; width: 100%; display: block;"/> |
+| <img src="/assets/posts/point_in_rotating_frame.svg" alt="Image is unavailable. Sorry." style="margin-left: auto; margin-right: auto; width: 100%; display: block;"/> |
 | <center> Figure: Frame 0 is an inertial frame and frame 1 is rotating w.r.t frame 1. An observer in frame 1 is watching point p.</center> |
 
 # Forces in a Rotating Frame: Coriolis Force, Centrifugal Force, Euler Force
