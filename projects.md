@@ -4,12 +4,14 @@ title: Projects
 permalink: /projects/
 ---
 
-This will be the projects page!
-
-<ul>
+<ul id="project-list">
   {% for project in site.projects %}
     <li>
-      <h2><a href="{{ project.url }}">{{ project.title }}</a></h2>
+      <img src="/assets/projects/{{project.short_name}}//front.jpg"/>
+      <div>
+        <h2><a href="{{ project.url }}">{{ project.title }}</a></h2>
+        <p>{{ project.description }}</p>
+      </div>
     </li>
   {% endfor %}
 </ul>
