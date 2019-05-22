@@ -10,7 +10,7 @@ $base-line-height: 1.5 !default;
 
 $spacing-unit:     30px !default;
 
-$text-color:       #111 !default;
+$text-color:       #555 !default;
 $background-color: #fdfdfd !default;
 $brand-color:      #2a7ae2 !default;
 
@@ -54,13 +54,15 @@ $on-laptop:        800px !default;
 // About Page
 
 #about-pic {
-  width: 45%;
-  padding: 10px;
-  padding-top: 0px;
-  float: right;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+  border-radius: 50%;
+  border: 2px solid black;
 }
 
-// Project Page
+// Project List Page
 
 #project-list {
   list-style: none;
@@ -82,4 +84,13 @@ $on-laptop:        800px !default;
   width: 55%;
   vertical-align: top;
   padding-left: 10px;
+}
+
+// Project Layout Page
+
+#project-image {
+  width: 40%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
 }
