@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "The Art of Worldly Wisdom: Rule 91"
-date:   2017-05-07 21:00:00 -0400
+date:   2017-05-05 21:00:00 -0400
 categories: books
 ---
 
