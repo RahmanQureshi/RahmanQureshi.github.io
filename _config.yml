@@ -13,7 +13,7 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: rahmanqureshi.com
+title: Rahman Qureshi's Blog
 email: rahman.a.qureshi@gmail.com
 author: Rahman Qureshi
 description: "Powered by <a href=\"https://jekyllrb.com/\">Jekyll</a> and <a href=\"https://pages.github.com/\">Github Pages</a>."
@@ -21,6 +21,7 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  rahmanqureshi
 facebook_username: rahmanqureshi
+instagram_username: rayq95
 
 # Build settings
 markdown: kramdown

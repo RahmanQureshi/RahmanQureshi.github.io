@@ -209,17 +209,20 @@ pre {
  */
 
 .svg-icon {
-    width: 16px;
-    height: 16px;
+    height: 40px;
+    width: 40px;
     display: inline-block;
-    fill: #{$grey-color};
-    padding-right: 5px;
+    padding-right: 20px;
     vertical-align: text-top;
+    transform: scale(2.5);
+    position: relative;
+    left: 40px;
+    top: 28px; // counter scaling offsets
 }
 
 .social-media-list {
-  li + li {
-    padding-top: 5px;
+  li  {
+    display: inline-block;
   }
 }
 
