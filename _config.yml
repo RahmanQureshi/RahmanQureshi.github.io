@@ -23,6 +23,9 @@ github_username:  rahmanqureshi
 facebook_username: rahmanqureshi
 instagram_username: rayq95
 
+disqus:
+  shortname: rahmanqureshi-github-io 
+
 # Build settings
 markdown: kramdown
 theme: minima
