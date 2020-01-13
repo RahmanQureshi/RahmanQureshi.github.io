@@ -1,0 +1,14 @@
+---
+layout: post
+title:  "Replicating Human-level control through deep reinforcement learning"
+date:   2020-01-12 00:00:00 -0500
+categories: machine-learning
+---
+
+# Reinforcement Learning Theory
+
+There are many online resources for reinforcement learning. You can find many blogs covering the basics in an intuitive way, written in an almost narrative format. Then, there are [free textbooks](http://incompleteideas.net/book/the-book-2nd.html) that cover from the fundamentals to advanced topics. This section is my best attempt at the former, but sprinkled with rigor insofar as it's useful to understand the paper.
+
+# What is Reinforcement Learning?
+
+<img src="/assets/posts/reinforcement_learning_model.png" alt="Image is unavailable. Sorry." style="margin-left: auto; margin-right: auto; width: 100%; display: block;"/>
