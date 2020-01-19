@@ -51,7 +51,7 @@ Let the resulting state be $$s'$$, and let $$a' = \pi(s')$$. It is easy to see t
 
 $$ Q^\pi (s,a) = r (s,a) +  \gamma Q^\pi(s', a') \;\;\;\;  (1) $$
 
-This is the recursive form of the Q-value function. Note that the 0 subscript on the reward was dropped. he goal is to find a policy $$\pi^*$$ which maximizes the value of the Q-value function. The optimal Q-value function is:
+This is the recursive form of the Q-value function. Note that the 0 subscript on the reward was dropped. The goal is to find a policy $$\pi^*$$ which maximizes the value of the Q-value function. The optimal Q-value function is:
 
 $$ Q^*(s,a) = \sup_\pi Q^\pi(s,a) $$
 
@@ -63,4 +63,4 @@ Following the policy of selecting the action which maximizes the Q-value functio
  $$ Q^* (s,a) = r (s,a) +  \gamma \max_{a'} Q^*(s', a') $$
 
 
-Does this look familiar? 
+Does this look familiar?  The "target" of the Squared-Error loss function used in the paper is $$r + Q_{target}(s', a', \theta_{target})$$ and the prediction is $$Q(s, a, \theta)$$. Then, through repeated backpropagation on a large buffer of "experiences," the neural network converges to the optimal Q-value function! The proof that it will converge under some set of conditions comes from the fact that the recursive definition above can be reinterpreted as a Bellman optimality operator, and the bellman optimality has a property called "contraction" which guarantees convergence to the optimal value. I mention it for completeness but although I intuitively and vaguely understand it, I don't have a deep understanding, and therefore, leave it to the reader.
