@@ -21,3 +21,36 @@ The strategy or decision-making process that the agent uses to select it's actio
 # Reinforcement Learning Theory
 
 There are many online resources for reinforcement learning. You can find many blogs covering the basics in an intuitive way, written in an almost narrative format. Then, there are [free textbooks](http://incompleteideas.net/book/the-book-2nd.html) that cover the fundamentals and advanced topics. This section is my best attempt at the former, but sprinkled with rigor insofar as it's useful to understand the paper.
+
+## Problem Formulation
+
+At every timestemp $$t = 0, 1, 2, ...$$ the environment is in some state $$s_t$$:
+- the agent takes an action $$a_t$$
+- the environment moves to some new state $$s_{t+1}$$ governed by the dynamics of the environment which is modeled by a probability distribution $$ s_{t+1}  \sim P(s_{t+1} \vert s_t, a_t) $$ 
+- the agent receives reward $$ r_t $$ governed by the dynamics of the environment and modeled by a probability distribution $$ r_t \sim R(s_t, a_t) $$
+
+As discussed, the goal of the agent is to maximize the total reward it receives: $$ r_0 + r_1 + r_2 + ...$$ In reality though, we modify the goal to maximize the total **discounted** reward: $$r_0 + \gamma r_1 + \gamma^2 r_2 + ...$$ where $$\gamma$$ is the **discount rate**. The use of the discount rate can be motivated in a lot of ways. Mathematically, it ensures the sum is not infinite and that it will converge. Economically, rewards (money) in the future are (is) worth less than rewards (money) right now. Another interpretation is that it models the agent's **uncertainty** about the future rewards, and thus, they are worth less. Here is a tangible example to motivate the use of a discount: consider a game where the agent simply needs to move around the board to pickup coins. If the rewards were not discounted, a valid solution for the agent would be to just stay still, because it doesn't matter when it moves to collect the coins.
+
+Finally, the policy of an agent is denoted $$\pi$$. The policy can be deterministic $$a_t = \pi(s_t)$$ or probabilistic  $$a_t \sim \pi(s_t) $$.
+
+## The Q-Value Function
+
+The Q-value function $$Q^\pi(s,a)$$ represents the expected discounted reward if an agent currently in state $$s$$ takes action $$a$$ and then follows policy $$\pi$$ for every subsequent action.
+
+$$ Q^\pi (s,a) = \mathop{\mathbb{E}} \left[ r_0 + \gamma r_1 + \gamma^2 r_2 + ... \big\vert s_0 = s, a_0 = a \right] \\
+
+ = \mathop{\mathbb{E}} \left[ \sum_{t=0}^{\infty} \gamma^t r_t \big\vert s_0 = s, a_0 = a \right] $$
+
+In this treatment, I will assume that the policy, state transition and rewards are all deterministic. This will allow us to simplify the equation by not having to marginalize over all possible subsequent actions or resulting states, and to get to a more **interpretable equation that elucidates and motivates the form of the loss function presented in the paper**. Therefore, we can drop the expectation, and also, let us separate the first term from the sum:
+
+$$ Q^\pi (s,a) = r_0 (s,a) + \sum_{t=1}^{\infty} \gamma^t r_t \\
+
+   Q^\pi (s,a) = r_0 (s,a) +  \gamma \sum_{t=0}^{\infty} \gamma^{t} r_{t+1}$$
+
+Let the resulting state be $$s'$$, and let $$a' = \pi(s')$$. It is easy to see the second term in the equation above is just the discounted Q-value of the resulting state-action pair. That is:
+
+$$ Q^\pi (s,a) = r_0 (s,a) +  \gamma Q^\pi(s', a') $$
+
+Suppose we know how to compute the Q-value function. A very obvious policy is to select the action that maximizes  $$Q(s,a)$$, i.e. $$a = \pi(s) = \max_a Q(s, a)$$. 
+
+$$ Q^\pi (s,a) = r_0 (s,a) +  \gamma \max_{a'} Q^\pi(s', a') $$
