@@ -9,7 +9,7 @@ This series of posts will be to write about my experience replicating an influen
 
 The paper was influential because it showed that neural networks were capable of playing games such as pong and breakout at a professional level by only "looking" at the screen (i.e. using the pixels as input).
 
-In part 1, my goal is to motivate the form of the loss function used in the paper (simplified):
+In part 1, my goal is to provide some intuition behind the loss function's form (simplified):
 
 $$L = (r +  \gamma \max_{a'} Q(s', a', \theta_{fixed}) - Q(s, a, \theta))^2 \;\;\;\; (1)$$
 
