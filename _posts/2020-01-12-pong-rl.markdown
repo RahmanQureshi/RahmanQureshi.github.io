@@ -9,7 +9,7 @@ This post is to write about my experience replicating an influential reinforceme
 
 First, I will briefly introduce reinforcement learning, and then I will discuss my experience replicating the paper.
 
-# What is Reinforcement Learning?
+## What is Reinforcement Learning?
 
 In reinforcement learning, an **agent** interacts with an **environment** by observing its **state** taking some **action**. The result of the agent's action is that it may obtain some **reward** from the environment and the state of the environment changes. The agent continuously observes the new state and making actions with the goal of maximizing its total reward. This problem formulation can be used to model a myriad of situations. For instance, it can be used to model the classic Atari game pacman. The agent, pacman, has 5 actions: stay still, go up, go down, go left, and go right. The environment is the board, and it is very complex; it has obstacles, ghosts which chase pacman, pellets which cause ghosts to flee and allow pacman to eat them, and points scattered all over the board that pacman must collect.
 
@@ -18,11 +18,11 @@ In reinforcement learning, an **agent** interacts with an **environment** by obs
 
 The strategy or decision-making process that the agent uses to select it's action is called a **policy**. **Reinforcement learning** is teaching a software agent the optimal policy that maximizes its reward.
 
-# Reinforcement Learning Theory
+## Reinforcement Learning Theory
 
 There are many online resources for reinforcement learning. You can find many blogs covering the basics in an intuitive way, written in an almost narrative format. Then, there are [free textbooks](http://incompleteideas.net/book/the-book-2nd.html) that cover the fundamentals and advanced topics. This section is my best attempt at the former, but sprinkled with rigor insofar as it's useful to understand the paper.
 
-## Problem Formulation
+### Problem Formulation
 
 At every timestemp $$t = 0, 1, 2, ...$$ the environment is in some state $$s_t$$:
 - the agent takes an action $$a_t$$
@@ -33,7 +33,7 @@ As discussed, the goal of the agent is to maximize the total reward it receives:
 
 Finally, the policy of an agent is denoted $$\pi$$. The policy can be deterministic $$a_t = \pi(s_t)$$ or probabilistic  $$a_t \sim \pi(s_t) $$.
 
-## The Q-Value Function
+### The Q-Value Function
 
 The Q-value function $$Q^\pi(s,a)$$ represents the expected discounted reward if an agent currently in state $$s$$ takes action $$a$$ and then follows policy $$\pi$$ for every subsequent action.
 
@@ -49,8 +49,18 @@ $$ Q^\pi (s,a) = r_0 (s,a) + \sum_{t=1}^{\infty} \gamma^t r_t \\
 
 Let the resulting state be $$s'$$, and let $$a' = \pi(s')$$. It is easy to see the second term in the equation above is just the discounted Q-value of the resulting state-action pair. That is:
 
-$$ Q^\pi (s,a) = r_0 (s,a) +  \gamma Q^\pi(s', a') $$
+$$ Q^\pi (s,a) = r (s,a) +  \gamma Q^\pi(s', a') \;\;\;\;  (1) $$
 
-Suppose we know how to compute the Q-value function. A very obvious policy is to select the action that maximizes  $$Q(s,a)$$, i.e. $$a = \pi(s) = \max_a Q(s, a)$$. 
+This is the recursive form of the Q-value function. Note that the 0 subscript on the reward was dropped. he goal is to find a policy $$\pi^*$$ which maximizes the value of the Q-value function. The optimal Q-value function is:
 
-$$ Q^\pi (s,a) = r_0 (s,a) +  \gamma \max_{a'} Q^\pi(s', a') $$
+$$ Q^*(s,a) = \sup_\pi Q^\pi(s,a) $$
+
+And given $$Q^*$$, it is intuitively easy to see that the optimal policy $$\pi^*$$ is that which selects the action which maximizes $$Q^*$$ i.e. $$a = \pi^*(s) = \max_a Q^*(s, a)$$. Let me reiterate this to emphasize it's importance: **if I have the optimal Q-value function, I also have the optimal policy $$\pi^*$$**.
+
+
+Following the policy of selecting the action which maximizes the Q-value function, using the form of equation $$(1)$$ the Q-value function becomes:
+
+ $$ Q^* (s,a) = r (s,a) +  \gamma \max_{a'} Q^*(s', a') $$
+
+
+Does this look familiar? 
