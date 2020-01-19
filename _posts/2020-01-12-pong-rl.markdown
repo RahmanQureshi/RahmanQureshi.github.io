@@ -16,7 +16,7 @@ $$L = (r +  \gamma \max_{a'} Q(s', a', \theta_{fixed}) - Q(s, a, \theta))^2 \;\;
 
 In doing so, I will attempt to explain what is the Q-value function, and what deep-Q learning is.
 
-I assume background knowledge on machine learning and neural networks in general, and being familiar with the basics of reinforcement learning would be helpful, but I do give a brief overview.
+I assume background knowledge on machine learning and neural networks, and being familiar with the basics of reinforcement learning would be helpful, but I do give a brief overview.
 
 ## What is Reinforcement Learning?
 
