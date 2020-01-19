@@ -13,8 +13,7 @@ In part 1, my goal is to provide some intuition behind the loss function's form 
 
 $$L = (r +  \gamma \max_{a'} Q(s', a', \theta_{fixed}) - Q(s, a, \theta))^2 \;\;\;\; (1)$$
 
-
-In doing so, I will attempt to explain what is the Q-value function, and what deep-Q learning is.
+In doing so, I will attempt to explain what the Q-value function is, and what deep-Q learning is.
 
 I assume background knowledge on machine learning and neural networks, and being familiar with the basics of reinforcement learning would be helpful, but I do give a brief overview.
 
@@ -82,7 +81,7 @@ $$L = (r +  \gamma \max_{a'} Q^*(s', a', \theta_{fixed}) - Q(s, a, \theta))^2 \;
 where $$\theta_{fixed} = \theta$$ but we do not backpropagate through $$\theta_{fixed}$$.
 > Actually, $$\theta_{fixed}$$ is only periodically updated to the "current" weights of the network, for stability purposes.
 
-Does this look familiar? It looks like a squared-error loss, but what is the "label", and what is the "prediction"? Look at equation (3). The label is $$r + \gamma\max_{a'}Q(s', a', \theta_{fixed})$$, i.e. the right-hand side of eqn (3), and the prediction is $$Q(s, a, \theta)$$, i.e. the left-hand side of eqn(3). 
+Does this look familiar? It looks like a squared-error loss, but what is the "label", and what is the "prediction"? Look at equation (3). The label is $$r + \gamma\max_{a'}Q(s', a', \theta_{fixed})$$, i.e. the right-hand side of eqn (3), and the prediction is $$Q(s, a, \theta)$$, i.e. the left-hand side of eqn (3). 
 
 Then, through repeated backpropagation on a large buffer of experiences, the neural network adjusts it's weights to solve for Q to make equation (3) true, and the Q function converges to the optimal Q-value function! 
 
