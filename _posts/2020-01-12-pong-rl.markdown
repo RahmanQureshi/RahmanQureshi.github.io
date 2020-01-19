@@ -33,7 +33,7 @@ There are many online resources for reinforcement learning. You can find many bl
 
 ### Problem Formulation
 
-At every timestemp $$t = 0, 1, 2, ...$$ the environment is in some state $$s_t$$:
+At every time step $$t = 0, 1, 2, ...$$ the environment is in some state $$s_t$$:
 - the agent takes an action $$a_t$$
 - the environment moves to some new state $$s_{t+1}$$ governed by the dynamics of the environment which is modeled by a probability distribution $$ s_{t+1}  \sim P(s_{t+1} \vert s_t, a_t) $$ 
 - the agent receives reward $$ r_t $$ governed by the dynamics of the environment and modeled by a probability distribution $$ r_t \sim R(s_t, a_t) $$
