@@ -1,13 +1,13 @@
 ---
 layout: post
-title:  "Replicating Human-level control through deep reinforcement learning"
+title:  "Replicating Human-level control through deep reinforcement learning Part 1: Understanding the Loss Function"
 date:   2020-01-12 00:00:00 -0500
 categories: machine-learning
 ---
 
-This post is to write about my experience replicating an influential reinforcement learning paper published in 2015: [Human-level control through deep reinforcement learning](https://web.stanford.edu/class/psych209/Readings/MnihEtAlHassibis15NatureControlDeepRL.pdf). I self-studied [CSC421 Deep Learning](http://www.cs.toronto.edu/~rgrosse/courses/csc421_2019/) which had a publically available syllabus and whose lectures were based on accessible research papers, and after completing all the [homework](https://github.com/RahmanQureshi/csc421), I wanted to do a "capstone." 
+This series of posts will be to write about my experience replicating an influential reinforcement learning paper published in 2015: [Human-level control through deep reinforcement learning](https://web.stanford.edu/class/psych209/Readings/MnihEtAlHassibis15NatureControlDeepRL.pdf). I self-studied [CSC421 Deep Learning](http://www.cs.toronto.edu/~rgrosse/courses/csc421_2019/) which had a publically available syllabus and whose lectures were based on accessible research papers, and after completing all the [homework](https://github.com/RahmanQureshi/csc421), I wanted to do a "capstone." 
 
-First, I will briefly introduce reinforcement learning, and then I will discuss my experience replicating the paper.
+In part 1, I will briefly cover the basics of reinforcement learning, and then motivate the reason for the loss function being as it is. I will assume that the reader is at least familiar with the basics of machine learning and neural networks.
 
 ## What is Reinforcement Learning?
 
@@ -31,7 +31,9 @@ At every timestemp $$t = 0, 1, 2, ...$$ the environment is in some state $$s_t$$
 
 As discussed, the goal of the agent is to maximize the total reward it receives: $$ r_0 + r_1 + r_2 + ...$$ In reality though, we modify the goal to maximize the total **discounted** reward: $$r_0 + \gamma r_1 + \gamma^2 r_2 + ...$$ where $$\gamma$$ is the **discount rate**. The use of the discount rate can be motivated in a lot of ways. Mathematically, it ensures the sum is not infinite and that it will converge. Economically, rewards (money) in the future are (is) worth less than rewards (money) right now. Another interpretation is that it models the agent's **uncertainty** about the future rewards, and thus, they are worth less. Here is a tangible example to motivate the use of a discount: consider a game where the agent simply needs to move around the board to pickup coins. If the rewards were not discounted, a valid solution for the agent would be to just stay still, because it doesn't matter when it moves to collect the coins.
 
-Finally, the policy of an agent is denoted $$\pi$$. The policy can be deterministic $$a_t = \pi(s_t)$$ or probabilistic  $$a_t \sim \pi(s_t) $$.
+The policy of an agent is denoted $$\pi$$. The policy can be deterministic $$a_t = \pi(s_t)$$ or probabilistic  $$a_t \sim \pi(s_t) $$.
+
+For the purposes of this blog post, let us assume we somehow obtained a dataset of experiences $$D = [e_1, e_2, e_3, ...]$$ where $$e_t = [s_t, a_t, s_{t+1}, r_t] $$. How can we train an agent to take actions to optimize the amount of reward it collects?
 
 ### The Q-Value Function
 
@@ -51,18 +53,18 @@ Let the resulting state be $$s'$$, and let $$a' = \pi(s')$$. It is easy to see t
 
 $$ Q^\pi (s,a) = r (s,a) +  \gamma Q^\pi(s', a') \;\;\;\;  (1) $$
 
-This is the recursive form of the Q-value function. Note that the 0 subscript on the reward was dropped. The goal is to find a policy $$\pi^*$$ which maximizes the value of the Q-value function. The optimal Q-value function is:
+This is the recursive form of the Q-value function. The goal is to find a policy $$\pi^*$$ which maximizes the value of the Q-value function. The optimal Q-value function is:
 
 $$ Q^*(s,a) = \sup_\pi Q^\pi(s,a) $$
 
-And given $$Q^*$$, it is intuitively easy to see that the optimal policy $$\pi^*$$ is that which selects the action which maximizes $$Q^*$$ i.e. $$a = \pi^*(s) = \max_a Q^*(s, a)$$. Let me reiterate this to emphasize it's importance: **if I have the optimal Q-value function, I also have the optimal policy $$\pi^*$$**.
+And given $$Q^*$$, it is intuitively easy to see that the optimal policy $$\pi^*$$ is that which selects the action which maximizes $$Q^*$$ i.e. $$\pi^*(s) = \max_a Q^*(s, a)$$. Let me reiterate this to emphasize it's importance: **if I have the optimal Q-value function, I also have the optimal policy $$\pi^*$$**.
 
 
-Following the policy of selecting the action which maximizes the Q-value function, using the form of equation $$(1)$$ the Q-value function becomes:
+Following the policy of selecting the action which maximizes the Q-value function, using the form of equation $$(1)$$ the optimal Q-value function $$Q^*$$ satisfies the following equation:
 
  $$ Q^* (s,a) = r (s,a) +  \gamma \max_{a'} Q^*(s', a') $$
 
 
-Does this look familiar?  The "target" of the Squared-Error loss function used in the paper is $$r + Q_{target}(s', a', \theta_{target})$$ and the prediction is $$Q(s, a, \theta)$$. Then, through repeated backpropagation on a large buffer of "experiences," the neural network converges to the optimal Q-value function! 
+Does this look familiar?  The "target" of the squared-error loss function used in the paper is $$r + \gamma\max_{a'}Q(s', a', \theta)$$, i.e. the right-hand side of the equation, and the prediction is $$Q(s, a, \theta)$$, i.e. the left-hand side. Then, through repeated backpropagation on a large buffer of "experiences," the neural network converges to the optimal Q-value function! 
 
-The intuition that the neural network will converge comes from the fact that the recursive definition above can be reinterpreted as a Bellman operator operating on the Q function, and the Bellman operator has a property called "contraction" which guarantees convergence to the optimal value in the context of something called **value iteration**. I mention it for completeness, but although I intuitively and vaguely understand it, I don't have a deep understanding, and therefore, leave it to the reader. To build your own intuition, I recommend [reading about value iteration](https://medium.com/@jonathan_hui/rl-value-learning-24f52b49c36d) to solve the problem of an agent escaping a maze.
+The intuition that the neural network will converge comes from the fact that the recursive definition above can be reinterpreted as a Bellman operator operating on the Q function, and the Bellman operator has a property called "contraction" which guarantees convergence to the optimal value in the context of something called **value iteration**. In value iteration, the Q function is iteratively updated according to the following rule: $$Q_{k+1}(s,a) \leftarrow r(s,a) + \gamma \max_{a'}Q_{k}(s',a') $$. I mention it for completeness, but to build your own intuition, I recommend [reading about value iteration](https://medium.com/@jonathan_hui/rl-value-learning-24f52b49c36d) and using it to solve the problem of an agent escaping from a maze.
