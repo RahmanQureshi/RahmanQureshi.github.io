@@ -7,7 +7,16 @@ categories: machine-learning
 
 This series of posts will be to write about my experience replicating an influential reinforcement learning paper published in 2015: [Human-level control through deep reinforcement learning](https://web.stanford.edu/class/psych209/Readings/MnihEtAlHassibis15NatureControlDeepRL.pdf). I self-studied [CSC421 Deep Learning](http://www.cs.toronto.edu/~rgrosse/courses/csc421_2019/) which had a publically available syllabus and whose lectures were based on accessible research papers, and after completing all the [homework](https://github.com/RahmanQureshi/csc421), I wanted to do a "capstone." 
 
-In part 1, I will briefly cover the basics of reinforcement learning, and then motivate the reason for the loss function being as it is. I will assume that the reader is at least familiar with the basics of machine learning and neural networks.
+The paper was influential because it showed that neural networks were capable of playing games such as pong and breakout at a professional level by only "looking" at the screen (i.e. using the pixels as input).
+
+In part 1, my goal is to motivate the form of the loss function used in the paper (simplified):
+
+$$L = (r +  \gamma \max_{a'} Q(s', a', \theta_{fixed}) - Q(s, a, \theta))^2 \;\;\;\; (1)$$
+
+
+In doing so, I will attempt to explain what is the Q-value function, and what deep-Q learning is.
+
+I assume background knowledge on machine learning and neural networks in general, and being familiar with the basics of reinforcement learning would be helpful, but I do give a brief overview.
 
 ## What is Reinforcement Learning?
 
@@ -33,7 +42,7 @@ As discussed, the goal of the agent is to maximize the total reward it receives:
 
 The policy of an agent is denoted $$\pi$$. The policy can be deterministic $$a_t = \pi(s_t)$$ or probabilistic  $$a_t \sim \pi(s_t) $$.
 
-For the purposes of this blog post, let us assume we somehow obtained a dataset of experiences $$D = [e_1, e_2, e_3, ...]$$ where $$e_t = [s_t, a_t, s_{t+1}, r_t] $$. How can we train an agent to take actions to optimize the amount of reward it collects?
+For the purposes of this blog post, let us assume we somehow obtained a dataset of **experiences** $$D = [e_1, e_2, e_3, ...]$$ where $$e_t = [s_t, a_t, s_{t+1}, r_t] $$. How can we train an agent to take actions to optimize the amount of reward it collects?
 
 ### The Q-Value Function
 
@@ -51,7 +60,7 @@ $$ Q^\pi (s,a) = r_0 (s,a) + \sum_{t=1}^{\infty} \gamma^t r_t \\
 
 Let the resulting state be $$s'$$, and let $$a' = \pi(s')$$. It is easy to see the second term in the equation above is just the discounted Q-value of the resulting state-action pair. That is:
 
-$$ Q^\pi (s,a) = r (s,a) +  \gamma Q^\pi(s', a') \;\;\;\;  (1) $$
+$$ Q^\pi (s,a) = r (s,a) +  \gamma Q^\pi(s', a') \;\;\;\;  (2) $$
 
 This is the recursive form of the Q-value function. The goal is to find a policy $$\pi^*$$ which maximizes the value of the Q-value function. The optimal Q-value function is:
 
@@ -60,11 +69,23 @@ $$ Q^*(s,a) = \sup_\pi Q^\pi(s,a) $$
 And given $$Q^*$$, it is intuitively easy to see that the optimal policy $$\pi^*$$ is that which selects the action which maximizes $$Q^*$$ i.e. $$\pi^*(s) = \max_a Q^*(s, a)$$. Let me reiterate this to emphasize it's importance: **if I have the optimal Q-value function, I also have the optimal policy $$\pi^*$$**.
 
 
-Therefore, using equation $$(1)$$, the optimal Q-value function $$Q^*$$ satisfies the following equation:
+Therefore, using equation $$(2)$$, the optimal Q-value function $$Q^*$$ satisfies the following equation:
 
- $$ Q^* (s,a) = r (s,a) +  \gamma \max_{a'} Q^*(s', a') $$
+ $$ Q^* (s,a) = r (s,a) +  \gamma \max_{a'} Q^*(s', a') \;\;\;\;  (3) $$
 
+### Deep-Q Learning And The Loss Function
 
-Does this look familiar?  The "target" of the squared-error loss function used in the paper is $$r + \gamma\max_{a'}Q(s', a', \theta)$$, i.e. the right-hand side of the equation, and the prediction is $$Q(s, a, \theta)$$, i.e. the left-hand side. Then, through repeated backpropagation on a large buffer of "experiences," the neural network converges to the optimal Q-value function! 
+Deep-Q learning is using a neural network to model the Q-value function i.e. $$Q(s, a, \theta)$$. That is it. In the original paper, the neural network actually only accepts the state (input pixels) as input, and it outputs the Q-value of each possible action. Now let's look at the loss function again.
+
+$$L = (r +  \gamma \max_{a'} Q^*(s', a', \theta_{fixed}) - Q(s, a, \theta))^2 \;\;\;\; $$
+
+where $$\theta_{fixed} = \theta$$ but we do not backpropagate through $$\theta_{fixed}$$.
+> Actually, $$\theta_{fixed}$$ is only periodically updated to the "current" weights of the network, for stability purposes.
+
+Does this look familiar? It looks like a squared-error loss, but what is the "label", and what is the "prediction"? Look at equation (3). The label is $$r + \gamma\max_{a'}Q(s', a', \theta_{fixed})$$, i.e. the right-hand side of eqn (3), and the prediction is $$Q(s, a, \theta)$$, i.e. the left-hand side of eqn(3). 
+
+Then, through repeated backpropagation on a large buffer of experiences, the neural network adjusts it's weights to solve for Q to make equation (3) true, and the Q function converges to the optimal Q-value function! 
+
+### Bellman Optimality
 
 The intuition that the neural network will converge comes from the fact that the recursive definition above can be reinterpreted as a Bellman operator operating on the Q function, and the Bellman operator has a property called "contraction" which guarantees convergence to the optimal value in the context of something called **value iteration**. In value iteration, the Q function is iteratively updated according to the following rule: $$Q_{k+1}(s,a) \leftarrow r(s,a) + \gamma \max_{a'}Q_{k}(s',a') $$. I mention it for completeness, but to build your own intuition, I recommend [reading about value iteration](https://medium.com/@jonathan_hui/rl-value-learning-24f52b49c36d) and using it to solve the problem of an agent escaping from a maze.
