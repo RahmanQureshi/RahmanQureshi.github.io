@@ -60,7 +60,7 @@ $$ Q^*(s,a) = \sup_\pi Q^\pi(s,a) $$
 And given $$Q^*$$, it is intuitively easy to see that the optimal policy $$\pi^*$$ is that which selects the action which maximizes $$Q^*$$ i.e. $$\pi^*(s) = \max_a Q^*(s, a)$$. Let me reiterate this to emphasize it's importance: **if I have the optimal Q-value function, I also have the optimal policy $$\pi^*$$**.
 
 
-Following the policy of selecting the action which maximizes the Q-value function, using the form of equation $$(1)$$ the optimal Q-value function $$Q^*$$ satisfies the following equation:
+Therefore, using equation $$(1)$$, the optimal Q-value function $$Q^*$$ satisfies the following equation:
 
  $$ Q^* (s,a) = r (s,a) +  \gamma \max_{a'} Q^*(s', a') $$
 
