@@ -37,11 +37,20 @@ At every time step $$t = 0, 1, 2, ...$$ the environment is in some state $$s_t$$
 - the environment moves to some new state $$s_{t+1}$$ governed by the dynamics of the environment which is modeled by a probability distribution $$ s_{t+1}  \sim P(s_{t+1} \vert s_t, a_t) $$ 
 - the agent receives reward $$ r_t $$ governed by the dynamics of the environment and modeled by a probability distribution $$ r_t \sim R(s_t, a_t) $$
 
-As discussed, the goal of the agent is to maximize the total reward it receives: $$ r_0 + r_1 + r_2 + ...$$ In reality though, we modify the goal to maximize the total **discounted** reward: $$r_0 + \gamma r_1 + \gamma^2 r_2 + ...$$ where $$\gamma$$ is the **discount rate**. The use of the discount rate can be motivated in a lot of ways. Mathematically, it ensures the sum is not infinite, and that it will converge. Economically, rewards (money) in the future are (is) worth less than rewards (money) right now. Another interpretation is that it models the agent's **uncertainty** about the future rewards, and thus, they are worth less. Here is a tangible example to motivate the use of a discount: consider a game where the agent simply needs to move around the board to pickup coins. If the rewards were not discounted, a valid solution for the agent would be to just stay still, because it doesn't matter when it moves to collect the coins.
+The goal of the agent is to maximize the total reward it receives: $$ r_0 + r_1 + r_2 + ...$$ In reality though, we modify the goal to maximize the total **discounted** reward: $$r_0 + \gamma r_1 + \gamma^2 r_2 + ...$$ where $$\gamma$$ is the **discount rate** satisfying $$0 < \gamma < 1$$. In the paper, $$\gamma$$ is set to 0.99. I've seen it set to other values such as 0.9.
+
+> Note: The use of the discount rate can be motivated in a lot of ways. Mathematically, it ensures the sum is not infinite, and that it will converge. Economically, rewards (money) in the future are (is) worth less than rewards (money) right now. Another interpretation is that it models the agent's **uncertainty** about the future rewards, and thus, they are worth less. Here is a tangible example to motivate the use of a discount: consider a game where the agent simply needs to move around the board to pickup coins. If the rewards were not discounted, a valid solution for the agent would be to just stay still, because it doesn't matter when it moves to collect the coins.
 
 The policy of an agent is denoted $$\pi$$. The policy can be deterministic $$a_t = \pi(s_t)$$ or probabilistic  $$a_t \sim \pi(s_t) $$.
 
 For the purposes of this blog post, let us assume we somehow obtained a dataset of **experiences** $$D = [e_1, e_2, e_3, ...]$$ where $$e_t = [s_t, a_t, s_{t+1}, r_t] $$. How can we train an agent to take actions to optimize the amount of reward it collects?
+
+### Example: Pacman
+
+I added this section after feedback from some friends unfamiliar with RL who wanted to see how pacman could be cast using the formulation presented above. Aribitrarily, We will assume the game is played on a screen that is 200 pixels wide and 200 pixels long.
+
+The state $$s_t$$ at each timestep would be $$\mathbb{R}^{200\times200}$$. The initial state $$s_0$$ would be the initial starting screen which has information about the location of pacman, the ghosts, the points, and the pellets, and the initial reward $$r_0$$ would be zero. The agent now needs to decide what to do inside the action space $$\mathbb{A} = \{no-op, move-up, move-down, move-left, move-right\}$$. Suppose the agent somehow decided $$a_0 = move-up$$, pacman will attempt to execute that action. The environment could deny the action (e.g. because there is an obstacle) and pacman would not change location. Or the action is successful and he moves up. In either case, the environment updates and $$s_1$$ is "emitted" or "observed" as well as a reward $$r_1$$. For example, if the action was "successful," $$s_1$$ would be similar to $$s_0$$ but with pacman and the ghost's locations slightly perturbed as they moved through the map. If pacman collected a point, then $$r_1$$ would be $$>0$$. This entire cycle, $$[s_0, a_0, s_1, r_1]$$ would be called an "experience" consisting of the observed state, the action taken, the resulting state, and the reward collected.
+
 
 ### The Q-Value Function
 
