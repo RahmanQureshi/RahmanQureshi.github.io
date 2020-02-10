@@ -13,4 +13,4 @@ Benjamin Franklin implies with this story that making a request 1) gains favour 
 
 I cannot speak to the practicality of this technique. I attempted to practice it but I was met with no success. People often denied me, and even if they accepted, often would not follow through. I wonder if Benjamin Franklin was not mistaken about the reason for which he earned this man’s favour. In “How to Win Friends and Influence People,” Dale Carnegie wrote that one should find something that the other takes pride in and sincerely admire it. I think that is what Benjamin Franklin inadvertently did.
 
-From this anecdote I gathered that the best favours to ask are those that only the requested can fulfill – and that he or she can do so without too much effort. Afterwards, you should be sure to shower them with praise and thanks.
+From this anecdote I gathered that the best favours to ask are those that only the requested can fulfill – and that he or she can do so without too much effort. The point is that you make them feel appreciated for who they are as a person by admiring the special talents and interests they have. 
