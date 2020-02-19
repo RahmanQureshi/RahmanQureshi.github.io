@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "A Reproach of my Good Friend Rishi — Why We Should Use \"Big Words\""
+title:  "Why We Should Use \"Big Words\" — A Reproach of my Good Friend Rishi"
 date:   2020-02-17 00:00:00 -0500
 ---
 
