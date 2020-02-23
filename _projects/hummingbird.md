@@ -4,7 +4,7 @@ layout: project
 title: Hummingbird Tailsitter
 description: >-
     
-year: 2016
+date: 2019-05-02 00:00:00 -0500
 ---
 
 For my 4th year thesis, I added vision and localization capabilities to the Hummingbird, a tailsitter platform developed at the University of Toronto. See the report <a href="/assets/projects/{{page.short_name}}/qureshi_rahman_thesis.pdf">here</a>.

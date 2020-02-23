@@ -4,7 +4,7 @@ layout: project
 title: Bond Strength Detection Using ML
 description: >-
     
-year: 2015
+date: 2015-08-02 00:00:00 -0500
 ---
 
 I spent a summer working in the Ultrasonic Nondestructive Evaluation Laboratory at UofT. An industry sponsored project, the goal was to develop a method of detecting bond strength between an adhesive and primer using ultrasound. My supervisor and I developed an SVM that could classify bond strength as weak or strong with high accuracy on one specific type of pipe.

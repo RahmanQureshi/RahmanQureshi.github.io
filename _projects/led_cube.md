@@ -4,7 +4,7 @@ layout: project
 title: 8x8x8 LED Cube
 description: >-
     
-year: 2017
+date: 2017-11-11 00:00:00 -0500
 ---
 
 An 8x8x8 LED Cube built from scratch using the Atmega328p and 9 8-bit shift registers.
