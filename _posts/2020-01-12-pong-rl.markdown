@@ -17,6 +17,9 @@ In doing so, I will attempt to explain what the Q-value function is, and what de
 
 I assume background knowledge on machine learning and neural networks, and being familiar with the basics of reinforcement learning would be helpful, but I do give a brief overview.
 
+<!--more-->
+
+
 ## What is Reinforcement Learning?
 
 In reinforcement learning, an **agent** interacts with an **environment** by observing its **state** and taking some **action**. The result of the agent's action is that it may obtain some **reward** from the environment and the state of the environment changes. The agent continuously observes the new state and making actions with the goal of maximizing its total reward. This problem formulation can be used to model a myriad of situations. For instance, it can be used to model the classic Atari game pacman. The agent, pacman, has 5 actions: stay still, go up, go down, go left, and go right. The environment is the board, and it is very complex; it has obstacles, ghosts which chase pacman, pellets which cause ghosts to flee and allow pacman to eat them, and points scattered all over the board that pacman must collect.

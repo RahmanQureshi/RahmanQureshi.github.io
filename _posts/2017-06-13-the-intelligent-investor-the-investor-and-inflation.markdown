@@ -7,6 +7,8 @@ categories: books
 
 > There is no close time connection between inflationary (or deflationary) conditions and the movement of common-stock earnings and prices... [In 50] five year periods (or 78% of the time), stocks outpaced inflation. That’s impressive, but imperfect; it means that stocks failed to keep up with inflation about one-fifth of the time.
 
+<!--more-->
+
 This chapter did two things for me:
 
 - Dispelled the myth that common stocks protect against inflation

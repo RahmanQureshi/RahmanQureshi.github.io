@@ -7,6 +7,8 @@ categories: robotics
 
 This post derives newton's law in a rotating frame of reference using the more generalized framework of coordinate frames and rotation matrices. It has a nice intermediate result which is a general formula for computing the acceleration of a point in a new reference frame. It also has the benefit of starting from a simple and intuitive vector equation: $$r^{p0} = r^{10} + r^{p1}$$.
 
+<!--more-->
+
 # Notation
 
 - $$\omega_a^{cb}$$ : angular velocity of c with respect to b represented in the coordinates of frame a.
