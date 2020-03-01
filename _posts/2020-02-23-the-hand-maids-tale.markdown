@@ -1,6 +1,7 @@
 ---
 layout: post
-title:  "The Hand Maid\'s Tale"
+title:  "The Hand Maid\\'s Tale"
+disqus_title: "The Hand Maids Tale"
 date:   2020-02-23 00:00:00 -0500
 ---
 
