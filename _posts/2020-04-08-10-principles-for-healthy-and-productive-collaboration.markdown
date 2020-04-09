@@ -6,6 +6,8 @@ date:   2020-04-08 00:00:00 -0500
 
 ## Adapted from "Principles: Life and Work"
 
+<img src="/assets/posts/principles_1.jpg" style="width:30%;display:block;margin-left:auto;margin-right:auto;" />
+
 1. **Recognize that getting in sync is a two-way responsibility.** It is not only the responsibility of the meeting organizer to explain their reasoning, it is also the responsibility of everybody to make sure they understand. That means attentively listening, recognizing any gaps in your understanding, and asking questions.
 
 <!--more-->
