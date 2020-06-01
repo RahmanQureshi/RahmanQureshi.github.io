@@ -218,6 +218,7 @@ pre {
     position: relative;
     left: 40px;
     top: 28px; // counter scaling offsets
+    -webkit-filter: invert(100%);
 }
 
 .social-media-list {
