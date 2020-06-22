@@ -3,7 +3,7 @@ short_name: pong_rl
 layout: project
 title: Pong AI — Deep Q Reinforcement Learning
 description: >-
-    
+
 date: 2020-02-02 00:00:00 -0500
 ---
 
@@ -15,4 +15,4 @@ The final results are shown below (the neural network is the green player). The 
 
 | Randomly Sampled Actions  | Trained Deep Q Neural Network |
 | ------------- | ------------- |
-| <img src="/assets/projects/{{page.short_name}}/pong_random.gif" style="width:200px; border: 1px solid black;" /> | <img src="/assets/projects/{{page.short_name}}/pong_success.gif" style="width:200px; border: 1px solid black;" /> |
+| <img src="/assets/projects/{{page.short_name}}/pong_random.gif" style="width:200px; border: 2px solid black;" /> | <img src="/assets/projects/{{page.short_name}}/pong_success.gif" style="width:200px; border: 2px solid black;" /> |
