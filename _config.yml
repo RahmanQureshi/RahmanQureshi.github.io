@@ -39,6 +39,8 @@ collections:
 show_excerpts: false
 excerpt_separator: <!--more-->
 
+google_analytics: UA-42955923-2
+
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.
