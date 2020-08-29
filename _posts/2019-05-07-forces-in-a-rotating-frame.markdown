@@ -7,8 +7,6 @@ categories: robotics
 
 This post derives newton's law in a rotating frame of reference using the more generalized framework of coordinate frames and rotation matrices. It has a nice intermediate result which is a general formula for computing the acceleration of a point in a new reference frame. It also has the benefit of starting from a simple and intuitive vector equation: $$r^{p0} = r^{10} + r^{p1}$$.
 
-<!--more-->
-
 # Notation
 
 - $$\omega_a^{cb}$$ : angular velocity of c with respect to b represented in the coordinates of frame a.
@@ -24,7 +22,7 @@ This section explains the geometric picture. Define two frames, frame 0 and fram
 
 # Forces in a Rotating Frame: Coriolis Force, Centrifugal Force, Euler Force
 
-The vector from frame 0 to p equals the vector from frame 0 to 1 plus the vector from frame 1 to p. This is easy to reason and can be geometrically seen in the figure above. At this point, I want to emphasize that there are no assumptions about the motion of frame 0 or frame 1 or p. 
+The vector from frame 0 to p equals the vector from frame 0 to 1 plus the vector from frame 1 to p. This is easy to reason and can be geometrically seen in the figure above. At this point, I want to emphasize that there are no assumptions about the motion of frame 0 or frame 1 or p.
 
 $$
 r^{p0} = r^{10} + r^{p1}
@@ -41,18 +39,18 @@ Next, we take the derivative twice to find the acceleration of point p w.r.t fra
 $$
 \dot{r}_0^{p0} = \dot{r}_0^{10} + T_{01} \dot{r}_1^{p1} + \omega_0^{10} \times T_{01} r_1^{p1} \\
 
-\ddot{r}_0^{p0} = \ddot{r}_0^{10} + 
-                  T_{01} \ddot{r}_1^{p1} + \omega_0^{10} \times T_{01} \dot{r}_1^{p1} + 
+\ddot{r}_0^{p0} = \ddot{r}_0^{10} +
+                  T_{01} \ddot{r}_1^{p1} + \omega_0^{10} \times T_{01} \dot{r}_1^{p1} +
                   \omega_0^{10} \times (T_{01} \dot{r}_1^{p1} + \omega_0^{10} \times T_{01} r_1^{p1}) + \frac{d\omega_0^{10}}{dt} \times T_{01} r_1^{p1} \\
 
 \ddot{r}_0^{p0} = \ddot{r}_0^{10} + T_{01} \ddot{r}_1^{p1} +
-                  2 ( \omega_0^{10} \times T_{01} \dot{r}_1^{p1} ) + 
-                  \omega_0^{10} \times (\omega_0^{10} \times T_{01} r_1^{p1}) + 
+                  2 ( \omega_0^{10} \times T_{01} \dot{r}_1^{p1} ) +
+                  \omega_0^{10} \times (\omega_0^{10} \times T_{01} r_1^{p1}) +
                   \frac{d\omega_0^{10}}{dt} \times T_{01} r_1^{p1} \\
 
 \ddot{r}_0^{p0} = \ddot{r}_0^{10} + \ddot{r}_0^{p1} +
-                  2 ( \omega_0^{10} \times \dot{r}_0^{p1} ) + 
-                  \omega_0^{10} \times (\omega_0^{10} \times r_0^{p1}) + 
+                  2 ( \omega_0^{10} \times \dot{r}_0^{p1} ) +
+                  \omega_0^{10} \times (\omega_0^{10} \times r_0^{p1}) +
                   \frac{d\omega_0^{10}}{dt} \times r_0^{p1} \\
 
 $$
@@ -64,8 +62,8 @@ Now we introduce two assumptions. First, we assume that frame 0 is an inertial r
 $$
 F_0 = m \ddot{r}_0^{p0} \\
 F_0 = m \ddot{r}_0^{p1} +
-      2 m ( \omega_0^{10} \times \dot{r}_0^{p1} ) + 
-       m \omega_0^{10} \times (\omega_0^{10} \times r_0^{p1}) + 
+      2 m ( \omega_0^{10} \times \dot{r}_0^{p1} ) +
+       m \omega_0^{10} \times (\omega_0^{10} \times r_0^{p1}) +
        m \frac{d\omega_0^{10}}{dt} \times r_0^{p1} \
 $$
 
@@ -74,8 +72,8 @@ This equation is true no matter what basis we work in, so we change it to frame 
 
 $$
 F_1 = m \ddot{r}_1^{p1} +
-      2 m ( \omega_1^{10} \times \dot{r}_1^{p1} ) + 
-       m \omega_1^{10} \times (\omega_1^{10} \times r_1^{p1}) + 
+      2 m ( \omega_1^{10} \times \dot{r}_1^{p1} ) +
+       m \omega_1^{10} \times (\omega_1^{10} \times r_1^{p1}) +
        m \frac{d\omega_1^{10}}{dt} \times r_1^{p1} \
 $$
 
@@ -85,7 +83,7 @@ $$
 \bbox[2pt,border:1px solid red]{
 m \ddot{r}_1^{p1} = F_1
       - 2 m ( \omega_1^{10} \times \dot{r}_1^{p1} )
-      - m \omega_1^{10} \times (\omega_1^{10} \times r_1^{p1}) 
+      - m \omega_1^{10} \times (\omega_1^{10} \times r_1^{p1})
       - m \frac{d\omega_1^{10}}{dt} \times r_1^{p1} \
 }
 $$

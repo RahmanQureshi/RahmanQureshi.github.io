@@ -5,7 +5,7 @@ date:   2020-01-12 00:00:00 -0500
 categories: machine-learning
 ---
 
-This series of posts will be to write about my experience replicating an influential reinforcement learning paper published in 2015: [Human-level control through deep reinforcement learning](https://web.stanford.edu/class/psych209/Readings/MnihEtAlHassibis15NatureControlDeepRL.pdf). I self-studied [CSC421 Deep Learning](http://www.cs.toronto.edu/~rgrosse/courses/csc421_2019/) which had a publically available syllabus and whose lectures were based on accessible research papers, and after completing all the [homework](https://github.com/RahmanQureshi/csc421), I wanted to do a "capstone." 
+This series of posts will be to write about my experience replicating an influential reinforcement learning paper published in 2015: [Human-level control through deep reinforcement learning](https://web.stanford.edu/class/psych209/Readings/MnihEtAlHassibis15NatureControlDeepRL.pdf). I self-studied [CSC421 Deep Learning](http://www.cs.toronto.edu/~rgrosse/courses/csc421_2019/) which had a publically available syllabus and whose lectures were based on accessible research papers, and after completing all the [homework](https://github.com/RahmanQureshi/csc421), I wanted to do a "capstone."
 
 The paper was influential because it showed that neural networks were capable of playing games such as pong and breakout at a professional level by only "looking" at the screen (i.e. using the pixels as input).
 
@@ -16,9 +16,6 @@ $$L = (r +  \gamma \max_{a'} Q(s', a', \theta_{fixed}) - Q(s, a, \theta))^2 \;\;
 In doing so, I will attempt to explain what the Q-value function is, and what deep-Q learning is.
 
 I assume background knowledge on machine learning and neural networks, and being familiar with the basics of reinforcement learning would be helpful, but I do give a brief overview.
-
-<!--more-->
-
 
 ## What is Reinforcement Learning?
 
@@ -37,7 +34,7 @@ There are many online resources for reinforcement learning. You can find many bl
 
 At every time step $$t = 0, 1, 2, ...$$ the environment is in some state $$s_t$$:
 - the agent takes an action $$a_t$$
-- the environment moves to some new state $$s_{t+1}$$ governed by the dynamics of the environment which is modeled by a probability distribution $$ s_{t+1}  \sim P(s_{t+1} \vert s_t, a_t) $$ 
+- the environment moves to some new state $$s_{t+1}$$ governed by the dynamics of the environment which is modeled by a probability distribution $$ s_{t+1}  \sim P(s_{t+1} \vert s_t, a_t) $$
 - the agent receives reward $$ r_t $$ governed by the dynamics of the environment and modeled by a probability distribution $$ r_t \sim R(s_t, a_t) $$
 
 The goal of the agent is to maximize the total reward it receives: $$ r_0 + r_1 + r_2 + ...$$ In reality though, we modify the goal to maximize the total **discounted** reward: $$r_0 + \gamma r_1 + \gamma^2 r_2 + ...$$ where $$\gamma$$ is the **discount rate** satisfying $$0 < \gamma < 1$$. In the paper, $$\gamma$$ is set to 0.99. I've seen it set to other values such as 0.9.
@@ -93,9 +90,9 @@ $$L = (r +  \gamma \max_{a'} Q^*(s', a', \theta_{fixed}) - Q(s, a, \theta))^2 \;
 where $$\theta_{fixed} = \theta$$ but we do not backpropagate through $$\theta_{fixed}$$.
 > Actually, $$\theta_{fixed}$$ is only periodically updated to the "current" weights of the network, for stability purposes.
 
-Does this look familiar? It looks like a squared-error loss, but what is the "label", and what is the "prediction"? Look at equation (3). The label is $$r + \gamma\max_{a'}Q(s', a', \theta_{fixed})$$, i.e. the right-hand side of eqn (3), and the prediction is $$Q(s, a, \theta)$$, i.e. the left-hand side of eqn (3). 
+Does this look familiar? It looks like a squared-error loss, but what is the "label", and what is the "prediction"? Look at equation (3). The label is $$r + \gamma\max_{a'}Q(s', a', \theta_{fixed})$$, i.e. the right-hand side of eqn (3), and the prediction is $$Q(s, a, \theta)$$, i.e. the left-hand side of eqn (3).
 
-Then, through repeated backpropagation on a large buffer of experiences, the neural network adjusts it's weights to solve for Q to make equation (3) true, and the Q function converges to the optimal Q-value function! 
+Then, through repeated backpropagation on a large buffer of experiences, the neural network adjusts it's weights to solve for Q to make equation (3) true, and the Q function converges to the optimal Q-value function!
 
 ### Bellman Optimality
 

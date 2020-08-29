@@ -6,8 +6,6 @@ date:   2020-02-17 00:00:00 -0500
 
 This is an essay I've been meaning to write for a long time. After every incident, I would sit down, write out a few sentences, but then erase them all, unable to properly vocalize my discontent. Each time however, I would find new words to describe the raw emotion and feeling. The straw that broke the camel's back was when my good friend Rishi censured my praise of the use of the word "reprieve" when I was providing feedback on an essay of one of our mutual friends, insisting that it be replaced with the word "break," because in his words, "why use a fancier word when a simpler one works?" Usually I am not provoked so easily, but the use of the word "fancy" was clearly meant to belittle. It carries a tacit accusation that we are in some ways supercilious, and use "elevated vocabulary" as an ostentatious display of our intellect. Well, Rishi, let me tell you why.
 
-<!--more-->
-
 Here was the contentious sentence:
 
 > Meditation offers a reprieve from our busy thoughts and a macro lens from which to view our circumstances.
