@@ -36,7 +36,7 @@ collections:
   projects:
     output: true
 
-show_excerpts: false
+show_excerpts: true
 excerpt_separator: <!--more-->
 
 # Exclude from processing.
